@@ -13,6 +13,12 @@
         android:theme="@style/Theme.EventApp"
         tools:targetApi="31">
         <activity
+            android:name=".AreaPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BasicPageActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
