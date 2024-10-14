@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/darkblue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
 
     <TextView
         android:id="@+id/textSite"
@@ -17,7 +19,9 @@
         android:layout_marginTop="50dp"
         android:layout_marginStart="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/white"
+        android:fontFamily="@font/skolar_pe_variable_regular"/>
 
     <TextView
         android:id="@+id/textMain"
@@ -30,45 +34,54 @@
         android:layout_marginStart="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textSite"
+        android:fontFamily="@font/damione_regular"
+        android:textColor="@color/white"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="11 октября, \n Севастополь"
+        android:text="11 октября, \nСевастополь"
         android:textSize="23sp"
         android:layout_marginTop="30dp"
         android:layout_marginStart="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMain"/>
+        app:layout_constraintTop_toBottomOf="@+id/textMain"
+        android:textColor="@color/white"
+        android:fontFamily="@font/skolar_pe_variable_regular"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Хотите принять \nучастие?"
         android:textSize="26sp"
-        android:textStyle="italic"
         android:layout_marginStart="30dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/signUpBtn"/>
+        app:layout_constraintBottom_toTopOf="@+id/signUpBtn"
+        android:textColor="@color/white"
+        android:fontFamily="@font/skolar_pe_variable_italic"/>
 
     <Button
         android:id="@+id/signUpBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Хочу стать участником"
+        android:textSize="18sp"
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/signInBtn" />
+        app:layout_constraintBottom_toTopOf="@+id/signInBtn"
+        android:fontFamily="@font/skolar_pe_variable_regular"/>
 
     <Button
         android:id="@+id/signInBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Я уже участник"
+        android:textSize="18sp"
         android:layout_margin="20dp"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:fontFamily="@font/skolar_pe_variable_regular"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

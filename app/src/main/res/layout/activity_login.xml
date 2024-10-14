@@ -12,10 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:text="Войти в \nаккаунт"
-        android:textSize="50sp"
+        android:lineSpacingMultiplier="0.5"
+        android:textSize="60sp"
         android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toTopOf="@+id/signInBtns"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/skolar_pe_variable_regular" />
 
     <LinearLayout
         android:id="@+id/signInBtns"
@@ -35,7 +37,8 @@
             android:hint="Имя пользователя"
             android:textSize="20dp"
             android:layout_marginBottom="25dp"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="@font/skolar_pe_variable_regular"/>
 
 
         <EditText
@@ -45,7 +48,8 @@
             android:textSize="20dp"
             android:hint="Пароль"
             android:inputType="textPassword"
-            app:layout_constraintTop_toTopOf="@+id/usernameTxt"/>
+            app:layout_constraintTop_toTopOf="@+id/usernameTxt"
+            android:fontFamily="@font/skolar_pe_variable_regular"/>
     </LinearLayout>
 
     <Button
@@ -57,16 +61,18 @@
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@+id/signInBtns"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:fontFamily="@font/skolar_pe_variable_regular" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
+        android:textSize="20dp"
         android:text="Зарегестрироваться"
         android:layout_marginBottom="15dp"
         android:layout_marginHorizontal="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        android:fontFamily="@font/skolar_pe_variable_regular"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
