@@ -16,9 +16,6 @@
             android:name=".AreaDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".AreaPageActivity"
-            android:exported="false" />
-        <activity
             android:name=".BasicPageActivity"
             android:exported="false" />
         <activity
