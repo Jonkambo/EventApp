@@ -3,10 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/lightvlue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="65dp"
+        android:src="@drawable/vector_log_sign" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,9 +20,10 @@
         android:text="Войти в \nаккаунт"
         android:lineSpacingMultiplier="0.5"
         android:textSize="60sp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/signInBtns"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/white"
         android:fontFamily="@font/skolar_pe_variable_regular" />
 
     <LinearLayout
@@ -38,6 +45,7 @@
             android:textSize="20dp"
             android:layout_marginBottom="25dp"
             app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/white"
             android:fontFamily="@font/skolar_pe_variable_regular"/>
 
 
@@ -74,5 +82,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:fontFamily="@font/skolar_pe_variable_regular"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
