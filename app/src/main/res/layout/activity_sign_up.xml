@@ -11,14 +11,15 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="65dp"
+        android:layout_marginBottom="150dp"
+        android:layout_marginRight="-55dp"
         android:src="@drawable/vector_log_sign" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="-10dp"
         android:text="Создать \nаккаунт"
         android:lineSpacingMultiplier="0.5"
         android:textSize="60sp"
