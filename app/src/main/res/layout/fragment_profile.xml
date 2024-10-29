@@ -33,13 +33,15 @@
             android:text="Username"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/skolar_pe_variable_regular"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Изменить информацию"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/skolar_pe_variable_regular"/>
 
     </LinearLayout>
 
@@ -50,7 +52,8 @@
         android:text="Обо мне"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/skolar_pe_variable_regular"/>
 
     <TextView
         android:id="@+id/infoTxt"
@@ -58,7 +61,8 @@
         android:layout_height="wrap_content"
         android:text="Пользователь еще не добавил информацию о себе"
         android:textSize="18sp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/skolar_pe_variable_regular"/>
 
     <TextView
         android:id="@+id/areasTxt"
@@ -67,12 +71,14 @@
         android:text="Площадки"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/skolar_pe_variable_regular"/>
 
     <ListView
         android:id="@+id/areasListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/skolar_pe_variable_regular"/>
 
 </LinearLayout>
