@@ -45,7 +45,9 @@
             android:text="Изменить информацию"
             android:textSize="15sp"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/skolar_pe_variable_regular"/>
+            android:textColor="@color/white"
+            android:fontFamily="@font/skolar_pe_variable_regular"
+            android:background="@drawable/blue_button" />
 
     </LinearLayout>
 
