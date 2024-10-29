@@ -7,6 +7,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class SignUpActivity : AppCompatActivity() {
+    var signinButton: Button? = null;
+    var signupButton: Button? = null;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -16,5 +18,17 @@ class SignUpActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-    }
+        signinButton = findViewById(R.id.becomeBtn)
+
+        signinButton?.setOnClickListener {
+            val intent = Intent(this@MainActivity,LoginActivity::class.java);
+            startActivity(intent);
+        }
+        signupButton = findViewById(R.id.retrnToLoginBtn)
+
+        signupButton?.setOnClickListener {
+            val intent = Intent(this@MainActivity,LoginActivity::class.java);
+            startActivity(intent);
+        }
+    }                             
 }

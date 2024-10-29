@@ -17,10 +17,17 @@ import com.example.eventapp.databinding.FragmentProfileBinding
 class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
+    var reviewbtn: Button? = null;
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
+        reviewbtn = findViewById(R.id.reviwesBtn)
+
+        reviewbtn?.setOnClickListener {
+            val intent = Intent(this@MainActivity,ReviewsActivity::class.java);
+            startActivity(intent);
+        }
     }
 
     override fun onDestroyView() {
