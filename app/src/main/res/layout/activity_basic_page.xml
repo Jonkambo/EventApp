@@ -23,6 +23,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/nav_menu"
-        android:scrollIndicators="left"/>
+        android:scrollIndicators="left"
+        android:background="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
