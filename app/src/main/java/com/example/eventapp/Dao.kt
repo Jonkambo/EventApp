@@ -27,7 +27,7 @@ interface CommentDao {
     suspend fun insertComment(comment: Comment)
 
     @Query("SELECT * FROM Comments")
-    fun getAllComments(): Flow<List<User>>
+    fun getAllComments(): Flow<List<Comment>>
 }
 
 @Dao

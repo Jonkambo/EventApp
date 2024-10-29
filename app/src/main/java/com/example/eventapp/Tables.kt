@@ -1,10 +1,14 @@
 package com.example.eventapp
 
+import android.os.Build
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import androidx.room.Relation
+import java.time.format.DateTimeFormatter
 import java.util.Date
 
 @Entity(
@@ -35,7 +39,7 @@ data class Role (
 )
 data class User(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "userID")
+    @ColumnInfo(name = "UserID")
     val userId: Int = 0,
 
     @ColumnInfo(name = "FullName")
@@ -51,18 +55,7 @@ data class User(
     val roleId: Int
 )
 
-@Entity(
-    tableName = "Comments",
-    foreignKeys = [
-        ForeignKey(
-            entity = User::class,
-            parentColumns = ["UserID"],
-            childColumns = ["UserID"],
-            onDelete = ForeignKey.CASCADE,
-            onUpdate = ForeignKey.CASCADE
-        )
-    ]
-)
+@Entity(tableName = "Comments")
 data class Comment(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "CommentID")
@@ -78,7 +71,7 @@ data class Comment(
     val commentText: String,
 
     @ColumnInfo(name = "CommentDate")
-    val commentDate: Date = Date()
+    val commentDate: String = Date().toString()
 )
 
 @Entity(
@@ -91,7 +84,7 @@ data class EventLocation(
     val eventId: Int = 0,
 
     @ColumnInfo(name = "EventDate")
-    val eventDate: Date,
+    val eventDate: String,
 
     @ColumnInfo(name = "Address")
     val address: String,
