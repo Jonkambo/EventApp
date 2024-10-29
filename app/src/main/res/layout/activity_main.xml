@@ -73,6 +73,7 @@
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/signInBtn"
         android:fontFamily="@font/skolar_pe_variable_regular"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:background="@drawable/blue_button"/>
 
@@ -85,6 +86,7 @@
         android:layout_margin="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:fontFamily="@font/skolar_pe_variable_regular"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:background="@drawable/blue_button"/>
 

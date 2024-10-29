@@ -87,6 +87,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:fontFamily="@font/skolar_pe_variable_regular"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:background="@drawable/blue_button" />
 
@@ -100,6 +101,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:fontFamily="@font/skolar_pe_variable_regular"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:background="@drawable/black_button"/>
 
