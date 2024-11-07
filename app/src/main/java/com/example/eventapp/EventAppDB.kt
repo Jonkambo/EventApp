@@ -5,13 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.eventapp.Data.Comment
-import com.example.eventapp.Data.CommentDao
 import com.example.eventapp.Data.EventLocation
-import com.example.eventapp.Data.EventLocationDao
 import com.example.eventapp.Data.Role
-import com.example.eventapp.Data.RoleDao
 import com.example.eventapp.Data.User
-import com.example.eventapp.Data.UserDao
 
 @Database(entities = [Role::class, User::class, Comment::class, EventLocation::class], version = 1)
 abstract class EventAppDB : RoomDatabase() {

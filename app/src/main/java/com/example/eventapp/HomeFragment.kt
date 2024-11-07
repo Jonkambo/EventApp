@@ -12,6 +12,7 @@ import android.widget.ListView
 import com.example.eventapp.databinding.FragmentHomeBinding
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -57,8 +58,7 @@ class HomeFragment : Fragment() {
             adapter = EventAdapter(requireContext(), events)
             listView.adapter = adapter
         }
-    }
-     */
+    }*/
 
     override fun onDestroyView() {
         super.onDestroyView()
