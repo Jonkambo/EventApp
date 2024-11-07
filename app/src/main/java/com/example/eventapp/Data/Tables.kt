@@ -79,6 +79,9 @@ data class EventLocation(
     @ColumnInfo(name = "EventID")
     val eventId: Int = 0,
 
+    @ColumnInfo(name = "EventTitle")
+    val eventTitle: String,
+
     @ColumnInfo(name = "EventDate")
     val eventDate: String,
 
