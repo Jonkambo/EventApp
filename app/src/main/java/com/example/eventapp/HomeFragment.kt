@@ -46,10 +46,10 @@ class HomeFragment : Fragment() {
         listView = view.findViewById(R.id.eventsView)
         db = EventAppDB.getDB(requireContext()) // Используем requireContext()
 
-        loadEvents()
+        //loadEvents()
     }
 
-    private fun loadEvents() {
+    /*private fun loadEvents() {
         lifecycleScope.launch {
             val events = withContext(Dispatchers.IO) {
                 db.eventLocationDao().getAllEventLocations()
@@ -58,6 +58,7 @@ class HomeFragment : Fragment() {
             listView.adapter = adapter
         }
     }
+     */
 
     override fun onDestroyView() {
         super.onDestroyView()
