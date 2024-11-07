@@ -34,4 +34,7 @@ interface CommentDao {
 interface EventLocationDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEventLocation(eventLocation: EventLocation)
+
+    @Query("SELECT * FROM EventLocations")
+    suspend fun getAllEventLocations(): List<EventLocation>
 }

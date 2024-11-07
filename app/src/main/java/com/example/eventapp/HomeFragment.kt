@@ -8,9 +8,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ListView
 import com.example.eventapp.databinding.FragmentHomeBinding
-import com.example.eventapp.databinding.FragmentProfileBinding
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 /**
@@ -21,6 +24,9 @@ import com.example.eventapp.databinding.FragmentProfileBinding
 class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
+    private lateinit var listView: ListView
+    private lateinit var adapter: EventAdapter
+    private lateinit var db: EventAppDB
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +41,17 @@ class HomeFragment : Fragment() {
 
         binding?.reviewsbtn?.setOnClickListener {
             navigateToReviewsActivity()
+        }
+
+    }
+
+    private fun loadEvents() {
+        lifecycleScope.launch {
+            val events = withContext(Dispatchers.IO) {
+                db.eventLocationDao().getAllEventLocations()
+            }
+            adapter = EventAdapter(this@HomeFragment, events)
+            listView.adapter = adapter
         }
     }
 
