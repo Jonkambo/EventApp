@@ -43,10 +43,10 @@ class HomeFragment : Fragment() {
             navigateToReviewsActivity()
         }
 
-        /*listView = view.findViewById(R.id.eventsView)
+        listView = view.findViewById(R.id.eventsView)
         db = EventAppDB.getDB(requireContext()) // Используем requireContext()
 
-        loadEvents()*/
+        loadEvents()
     }
 
     private fun loadEvents() {
