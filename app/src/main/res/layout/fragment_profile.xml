@@ -13,7 +13,9 @@
         android:layout_height="wrap_content"
         android:text="Профиль"
         android:textStyle="bold"
-        android:textSize="25sp"/>
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/skolar_pe_variable_regular"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,14 +36,18 @@
             android:textSize="30sp"
             android:textStyle="bold"
             android:layout_marginTop="20dp"
+            android:textColor="@color/black"
             android:fontFamily="@font/skolar_pe_variable_regular"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Изменить информацию"
+            android:textSize="15sp"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/skolar_pe_variable_regular"/>
+            android:textColor="@color/white"
+            android:fontFamily="@font/skolar_pe_variable_regular"
+            android:background="@drawable/blue_button" />
 
     </LinearLayout>
 
@@ -53,6 +59,7 @@
         android:textSize="25sp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
+        android:textColor="@color/black"
         android:fontFamily="@font/skolar_pe_variable_regular"/>
 
     <TextView
@@ -62,6 +69,7 @@
         android:text="Пользователь еще не добавил информацию о себе"
         android:textSize="18sp"
         android:layout_marginTop="10dp"
+        android:textColor="@color/black"
         android:fontFamily="@font/skolar_pe_variable_regular"/>
 
     <TextView
@@ -72,6 +80,7 @@
         android:textSize="25sp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
+        android:textColor="@color/black"
         android:fontFamily="@font/skolar_pe_variable_regular"/>
 
     <ListView
