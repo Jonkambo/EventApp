@@ -4,6 +4,10 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.eventapp.Data.Comment
+import com.example.eventapp.Data.EventLocation
+import com.example.eventapp.Data.Role
+import com.example.eventapp.Data.User
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -34,4 +38,7 @@ interface CommentDao {
 interface EventLocationDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEventLocation(eventLocation: EventLocation)
+
+    @Query("SELECT * FROM EventLocations")
+    fun getAllEventLocations(): Flow<List<EventLocation>>
 }
