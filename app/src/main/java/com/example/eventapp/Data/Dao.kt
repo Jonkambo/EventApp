@@ -1,4 +1,4 @@
-package com.example.eventapp
+package com.example.eventapp.Data
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -23,7 +23,8 @@
             android:textStyle="bold"
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="@font/skolar_pe_variable_regular" />
 
         <ImageView
             android:layout_width="match_parent"
@@ -40,7 +41,8 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailsHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsHeader"
+        android:fontFamily="@font/skolar_pe_variable_regular" />
 
     <TextView
         android:id="@+id/areaDetailsTxt"
@@ -51,7 +53,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/areasNameTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/areasNameTxt"
+        android:fontFamily="@font/skolar_pe_variable_regular"/>
 
     <LinearLayout
         android:id="@+id/areaDate"
@@ -73,7 +76,8 @@
             android:layout_height="wrap_content"
             android:text="Дата события"
             android:textSize="18sp"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="15dp"
+            android:fontFamily="@font/skolar_pe_variable_regular"/>
     </LinearLayout>
 
     <LinearLayout
@@ -96,7 +100,8 @@
             android:layout_height="wrap_content"
             android:text="Место проведения события"
             android:textSize="18sp"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="15dp"
+            android:fontFamily="@font/skolar_pe_variable_regular"/>
     </LinearLayout>
 
     <TextView
@@ -119,7 +124,8 @@
         android:textSize="18sp"
         android:layout_margin="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/areaInfoHeader"/>
+        app:layout_constraintTop_toBottomOf="@+id/areaInfoHeader"
+        android:fontFamily="@font/skolar_pe_variable_regular"/>
 
     <Button
         android:layout_width="match_parent"
@@ -129,6 +135,7 @@
         android:layout_marginHorizontal="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/skolar_pe_variable_regular" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

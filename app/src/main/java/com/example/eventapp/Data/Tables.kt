@@ -1,14 +1,10 @@
-package com.example.eventapp
+package com.example.eventapp.Data
 
-import android.os.Build
 import androidx.room.ColumnInfo
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import androidx.room.Relation
-import java.time.format.DateTimeFormatter
 import java.util.Date
 
 @Entity(
