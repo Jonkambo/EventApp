@@ -43,6 +43,10 @@ class HomeFragment : Fragment() {
             navigateToReviewsActivity()
         }
 
+        /*listView = view.findViewById(R.id.eventsView)
+        db = EventAppDB.getDB(requireContext()) // Используем requireContext()
+
+        loadEvents()*/
     }
 
     private fun loadEvents() {
@@ -50,7 +54,7 @@ class HomeFragment : Fragment() {
             val events = withContext(Dispatchers.IO) {
                 db.eventLocationDao().getAllEventLocations()
             }
-            adapter = EventAdapter(this@HomeFragment, events)
+            adapter = EventAdapter(requireContext(), events)
             listView.adapter = adapter
         }
     }

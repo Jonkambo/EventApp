@@ -1,12 +1,13 @@
 package com.example.eventapp
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 
-class EventAdapter(private val context: HomeFragment, private val events: List<EventLocation>) : BaseAdapter() {
+class EventAdapter(private val context: Context, private val events: List<EventLocation>) : BaseAdapter() {
 
     override fun getCount(): Int {
         return events.size
