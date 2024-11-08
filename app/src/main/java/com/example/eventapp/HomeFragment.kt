@@ -12,7 +12,7 @@ import android.widget.ListView
 import com.example.eventapp.databinding.FragmentHomeBinding
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -47,18 +47,22 @@ class HomeFragment : Fragment() {
         listView = view.findViewById(R.id.eventsView)
         db = EventAppDB.getDB(requireContext()) // Используем requireContext()
 
-        //loadEvents()
+        loadEvents()
     }
 
-    /*private fun loadEvents() {
+    private fun loadEvents() {
         lifecycleScope.launch {
             val events = withContext(Dispatchers.IO) {
-                db.eventLocationDao().getAllEventLocations()
+                try {
+                    db.eventLocationDao().getAllEventLocations().first()
+                } catch (e: NoSuchElementException) {
+                    emptyList() // Or handle the error appropriately
+                }
             }
             adapter = EventAdapter(requireContext(), events)
             listView.adapter = adapter
         }
-    }*/
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

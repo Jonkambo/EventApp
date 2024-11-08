@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.eventapp.Data.EventLocation
+import kotlinx.coroutines.flow.Flow
 
 class EventAdapter(private val context: Context, private val events: List<EventLocation>) : BaseAdapter() {
 
