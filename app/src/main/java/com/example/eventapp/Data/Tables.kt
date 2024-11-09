@@ -38,9 +38,6 @@ data class User(
     @ColumnInfo(name = "UserID")
     val userId: Int = 0,
 
-    @ColumnInfo(name = "FullName")
-    val fullName: String,
-
     @ColumnInfo(name = "Login")
     val login: String,
 

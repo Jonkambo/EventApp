@@ -1,13 +1,9 @@
-package com.example.eventapp
+package com.example.eventapp.Data
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.eventapp.Data.Comment
-import com.example.eventapp.Data.EventLocation
-import com.example.eventapp.Data.Role
-import com.example.eventapp.Data.User
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -23,6 +19,9 @@ interface UserDao {
 
     @Query("SELECT * FROM Users")
     fun getAllUsers(): Flow<List<User>>
+
+    @Query("SELECT * FROM users WHERE Login = login LIMIT 1")
+    fun getUserByLogin(login: String): User?
 }
 
 @Dao
