@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ListView
 import com.example.eventapp.databinding.FragmentHomeBinding
 import androidx.lifecycle.lifecycleScope
+import com.example.eventapp.Data.EventLocation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -26,8 +27,9 @@ class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
     private lateinit var listView: ListView
-    private lateinit var adapter: EventAdapter
     private lateinit var db: EventAppDB
+    private lateinit var eventAdapter: EventAdapter
+    private val eventList: MutableList<EventLocation> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,22 +47,24 @@ class HomeFragment : Fragment() {
         }
 
         listView = view.findViewById(R.id.eventsView)
-        db = EventAppDB.getDB(requireContext()) // Используем requireContext()
+        eventAdapter = EventAdapter(requireContext(), eventList)
+        listView.adapter = eventAdapter
 
         loadEvents()
     }
 
     private fun loadEvents() {
+        db = EventAppDB.getDB(requireContext())
+        val eventLocationDao = db.eventLocationDao()
+
+        // Используем корутины для асинхронного запроса данных
         lifecycleScope.launch {
-            val events = withContext(Dispatchers.IO) {
-                try {
-                    db.eventLocationDao().getAllEventLocations().first()
-                } catch (e: NoSuchElementException) {
-                    emptyList() // Or handle the error appropriately
-                }
+            eventLocationDao.getAllEventLocations().collect { events ->
+                eventList.clear() // Очищаем старые данные
+                eventList.addAll(events) // Добавляем новые данные
+                eventAdapter.notifyDataSetChanged() // Обновляем адаптер
             }
-            adapter = EventAdapter(requireContext(), events)
-            listView.adapter = adapter
+            //listView.adapter = eventAdapter
         }
     }
 
