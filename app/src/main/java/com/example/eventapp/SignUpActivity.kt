@@ -1,6 +1,5 @@
 package com.example.eventapp
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Window
@@ -13,8 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import androidx.room.Room
-import com.example.eventapp.Data.AppDatabase
+import com.example.eventapp.Data.EventAppDB
 import com.example.eventapp.Data.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -57,7 +55,7 @@ class SignUpActivity : AppCompatActivity() {
                 }
                 else{
                     lifecycleScope.launch {
-                        val db = Room.databaseBuilder(this@SignUpActivity, AppDatabase::class.java, "app_database").build()
+                        val db = EventAppDB.getDB(this@SignUpActivity)
                         val userDaoo = db.userDao()
                         val existingUser = userDaoo.getUserByLogin(login.text.toString())
                         if (existingUser == null) {
