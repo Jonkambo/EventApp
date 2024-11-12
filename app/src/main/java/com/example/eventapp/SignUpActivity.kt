@@ -56,26 +56,26 @@ class SignUpActivity : AppCompatActivity() {
                     Toast.makeText(this, "Введите пароль", Toast.LENGTH_LONG).show()
                 }
                 else{
-                    val db = Room.databaseBuilder(this, AppDatabase::class.java, "app_database").build()
-                    val userDaoo = db.userDao()
                     lifecycleScope.launch {
-                    val existingUser = userDaoo.getUserByLogin(login.text.toString())
-                    if (existingUser == null) {
-                       // val newUser = User(autoGenerate, login.text.toString(), password.text.toString(), 0)//посмотреть что сделать с айди
-                       // userDaoo.insertUser(newUser)
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(this@SignUpActivity, "Аккаунт создан, перейдите на страницу авторизации", Toast.LENGTH_SHORT).show()
+                        val db = Room.databaseBuilder(this@SignUpActivity, AppDatabase::class.java, "app_database").build()
+                        val userDaoo = db.userDao()
+                        val existingUser = userDaoo.getUserByLogin(login.text.toString())
+                        if (existingUser == null) {
+                            val newUser = User(login = login.text.toString(), password = password.text.toString(), roleId = 0)//посмотреть что сделать с айди
+                            userDaoo.insertUser(newUser)
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(this@SignUpActivity, "Аккаунт создан, перейдите на страницу авторизации", Toast.LENGTH_SHORT).show()
+                            }
+                        }else {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(this@SignUpActivity, "Такой логин уже существует", Toast.LENGTH_SHORT).show()
+                            }
                         }
-                    } else {
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(this@SignUpActivity, "Такой логин уже существует", Toast.LENGTH_SHORT).show()
-                        }
-                    }
                     val intent = Intent(this@SignUpActivity,LoginActivity::class.java)
                         startActivity(intent)
                     }
                 }
             }
         }
-    }                             
+    }
 }

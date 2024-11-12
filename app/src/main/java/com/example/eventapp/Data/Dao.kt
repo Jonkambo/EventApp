@@ -20,7 +20,7 @@ interface UserDao {
     @Query("SELECT * FROM Users")
     fun getAllUsers(): Flow<List<User>>
 
-    @Query("SELECT * FROM users WHERE Login = login LIMIT 1")
+    @Query("SELECT * FROM users WHERE login = :login LIMIT 1")
     fun getUserByLogin(login: String): User?
 }
 
