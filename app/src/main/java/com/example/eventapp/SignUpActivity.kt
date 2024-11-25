@@ -44,24 +44,18 @@ class SignUpActivity : AppCompatActivity() {
 
         signinButton = findViewById(R.id.becomeBtn)
         signinButton?.setOnClickListener {
-            val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
-            startActivity(intent)
-        }
-
-        signupButton = findViewById(R.id.retrnToLoginBtn)
-        signupButton?.setOnClickListener {
             if (login.text.isEmpty() || password.text.isEmpty() || repeat_password.text.isEmpty() || password.text.toString() != repeat_password.text.toString()) {
                 if(login.text.isEmpty()){
                     Toast.makeText(this, "Введите логин", Toast.LENGTH_LONG).show()
                 }
-            else if (password.text.isEmpty() || repeat_password.text.isEmpty() || password.text.toString() != repeat_password.text.toString()) {
-                if (password.text.isEmpty() || repeat_password.text.isEmpty()) {
-                    Toast.makeText(this, "Введите пароль", Toast.LENGTH_LONG).show()
+                else if (password.text.isEmpty() || repeat_password.text.isEmpty() || password.text.toString() != repeat_password.text.toString()) {
+                    if (password.text.isEmpty() || repeat_password.text.isEmpty()) {
+                        Toast.makeText(this, "Введите пароль", Toast.LENGTH_LONG).show()
+                    }
+                    else if(password.text.toString() != repeat_password.text.toString()){
+                        Toast.makeText(this, "Пароль не совпадает", Toast.LENGTH_LONG).show()
+                    }
                 }
-                else if(password.text.toString() != repeat_password.text.toString()){
-                    Toast.makeText(this, "Пароль не совпадает", Toast.LENGTH_LONG).show()
-                }
-            }
             }
             else {
                 lifecycleScope.launch {
@@ -79,11 +73,17 @@ class SignUpActivity : AppCompatActivity() {
                     }
                     else {
                         withContext(Dispatchers.Main) {
-                            Toast.makeText(this@SignUpActivity, "Такой логин уже существует", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@SignUpActivity, "Такой логин уже существует", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
             }
+        }
+
+        signupButton = findViewById(R.id.retrnToLoginBtn)
+        signupButton?.setOnClickListener {
+            val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 }
