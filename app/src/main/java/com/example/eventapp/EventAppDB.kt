@@ -1,4 +1,4 @@
-package com.example.eventapp.Data
+package com.example.eventapp
 
 import android.content.Context
 import androidx.room.Database

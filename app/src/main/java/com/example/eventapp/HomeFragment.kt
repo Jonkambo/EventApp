@@ -11,8 +11,6 @@ import android.view.ViewGroup
 import android.widget.ListView
 import com.example.eventapp.databinding.FragmentHomeBinding
 import androidx.lifecycle.lifecycleScope
-import com.example.eventapp.Data.EventAppDB
-import com.example.eventapp.Data.EventLocation
 import kotlinx.coroutines.launch
 
 
