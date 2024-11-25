@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ListView
 import com.example.eventapp.databinding.FragmentHomeBinding
 import androidx.lifecycle.lifecycleScope
@@ -26,6 +27,10 @@ class HomeFragment : Fragment() {
     private lateinit var db: EventAppDB
     private lateinit var eventAdapter: EventAdapter
     private val eventList: MutableList<EventLocation> = mutableListOf()
+    private lateinit var addEventBtn: Button
+
+    // переменная для проверки, является ли пользователь администратором
+    private var isAdmin: Boolean = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,9 +47,22 @@ class HomeFragment : Fragment() {
             navigateToReviewsActivity()
         }
 
+        addEventBtn = view.findViewById(R.id.addEventBtn)
+
+        addEventBtn?.setOnClickListener {
+            val intent = Intent(requireContext(),InsertEventActivity::class.java);
+            startActivity(intent);
+        }
+
+        if (isAdmin) {
+            addEventBtn.visibility = View.VISIBLE // Показываем кнопку
+        } else {
+            addEventBtn.visibility = View.GONE // Скрываем кнопку
+        }
+
         listView = view.findViewById(R.id.eventsView)
         eventAdapter = EventAdapter(requireContext(), eventList)
-        listView.adapter = eventAdapter
+        //listView.adapter = eventAdapter
 
         loadEvents()
     }
@@ -53,14 +71,14 @@ class HomeFragment : Fragment() {
         db = EventAppDB.getDB(requireContext())
         val eventLocationDao = db.eventLocationDao()
 
-        // Используем корутины для асинхронного запроса данных
+        // асинхронный запрос данных
         lifecycleScope.launch {
             eventLocationDao.getAllEventLocations().collect { events ->
                 eventList.clear() // Очищаем старые данные
                 eventList.addAll(events) // Добавляем новые данные
                 eventAdapter.notifyDataSetChanged() // Обновляем адаптер
             }
-            //listView.adapter = eventAdapter
+            listView.adapter = eventAdapter
         }
     }
 

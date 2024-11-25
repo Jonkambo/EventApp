@@ -1,5 +1,6 @@
 package com.example.eventapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -73,4 +74,5 @@ class BasicPageActivity : AppCompatActivity() {
             transaction.commit()
         }
     }
+
 }

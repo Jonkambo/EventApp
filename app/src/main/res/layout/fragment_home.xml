@@ -55,16 +55,33 @@
         android:fontFamily="@font/skolar_pe_variable_regular"
         android:background="@drawable/blue_button" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Площадки"
-        android:textStyle="bold"
-        android:textSize="25sp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/skolar_pe_variable_regular"/>
+        android:orientation="horizontal"
+        android:weightSum = "100"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Площадки"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:layout_marginLeft="25dp"
+            android:layout_weight="85"
+            android:textColor="@color/black"
+            android:fontFamily="@font/skolar_pe_variable_regular"/>
+
+        <Button
+            android:id="@+id/addEventBtn"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blue_button"
+            android:text="+"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:visibility="gone"  />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/eventsView"

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InsertEventActivity">
+
+    <LinearLayout
+        android:id="@+id/groupEdtTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/eventTitleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Название мероприятия"
+            android:textSize="20dp"
+            android:inputType="text"
+            android:layout_marginBottom="25dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/edit_txt"
+            android:fontFamily="@font/skolar_pe_variable_regular"/>
+
+        <EditText
+            android:id="@+id/eventDateEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Дата мероприятия"
+            android:textSize="20dp"
+            android:inputType="text"
+            android:layout_marginBottom="25dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/edit_txt"
+            android:fontFamily="@font/skolar_pe_variable_regular"/>
+
+        <EditText
+            android:id="@+id/addressEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Адрес"
+            android:textSize="20dp"
+            android:inputType="text"
+            android:layout_marginBottom="25dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/edit_txt"
+            android:fontFamily="@font/skolar_pe_variable_regular"/>
+
+        <EditText
+            android:id="@+id/eventInfoEditText"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:hint="Дополнительная информация"
+            android:textSize="20dp"
+            android:inputType="text"
+            android:layout_marginBottom="25dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/edit_txt"
+            android:fontFamily="@font/skolar_pe_variable_regular"/>
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Сохранить"
+            android:layout_gravity="center"
+            android:paddingHorizontal="30dp"
+            android:textSize="22dp"
+            android:fontFamily="@font/skolar_pe_variable_regular"
+            android:textColor="@color/white"
+            android:background="@drawable/blue_button" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
