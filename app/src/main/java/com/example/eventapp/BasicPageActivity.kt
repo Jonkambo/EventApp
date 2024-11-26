@@ -59,11 +59,6 @@ class BasicPageActivity : AppCompatActivity() {
         }
     }
 
-    /*private  fun loadFragment(fragment: Fragment){
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container,fragment)
-        transaction.commit()
-    }*/
     private fun loadFragment(fragment: Fragment) {
         val currentFragment = supportFragmentManager.findFragmentById(R.id.container)
         if (currentFragment != fragment) {

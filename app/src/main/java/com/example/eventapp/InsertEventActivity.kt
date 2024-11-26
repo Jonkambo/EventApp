@@ -1,5 +1,6 @@
 package com.example.eventapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
@@ -21,6 +22,7 @@ class InsertEventActivity : AppCompatActivity() {
     private lateinit var addressEditText: EditText
     private lateinit var eventInfoEditText: EditText
     private lateinit var saveButton: Button
+    private lateinit var returntoHomeBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +36,12 @@ class InsertEventActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        returntoHomeBtn = findViewById(R.id.returntoHomeBtn)
+        returntoHomeBtn?.setOnClickListener {
+            val intent = Intent(this@InsertEventActivity,BasicPageActivity::class.java);
+            startActivity(intent)
+        }
+
         db = EventAppDB.getDB(this)
 
         eventTitleEditText = findViewById(R.id.eventTitleEditText)
@@ -47,6 +55,7 @@ class InsertEventActivity : AppCompatActivity() {
         }
     }
 
+    // сохоаняем в базу данных мероприятие
     private fun saveEvent() {
         val title = eventTitleEditText.text.toString()
         val date = eventDateEditText.text.toString()
