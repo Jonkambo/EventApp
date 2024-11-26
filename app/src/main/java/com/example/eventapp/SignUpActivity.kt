@@ -31,7 +31,6 @@ class SignUpActivity : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(R.layout.activity_sign_up)
 
-        // Инициализация элементов интерфейса после setContentView
         login = findViewById(R.id.usernameTxt)
         password = findViewById(R.id.passwordTxt)
         repeat_password = findViewById(R.id.repeatPasswordTxt)
@@ -63,8 +62,8 @@ class SignUpActivity : AppCompatActivity() {
                     val userDaoo = db.userDao()
                     val existingUser  = userDaoo.getUserByLogin(login.text.toString())
                     if (existingUser  == null) {
-                        val newUser  = User(login = login.text.toString(), password = password.text.toString(), roleId = 0)
-                        userDaoo.insertUser (newUser )
+                        val newUser  = User(login = login.text.toString(), password = password.text.toString(), roleId = 1)
+                        userDaoo.insertUser(newUser)
                         withContext(Dispatchers.Main) {
                             Toast.makeText(this@SignUpActivity, "Аккаунт создан", Toast.LENGTH_SHORT).show()
                         }
