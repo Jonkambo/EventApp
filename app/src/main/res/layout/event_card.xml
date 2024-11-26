@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:text="EventName"
             android:textSize="18sp"
+            android:textColor="@color/darkblue"
             android:textStyle="bold" />
 
         <TextView
@@ -27,6 +28,6 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:text="EventData"
-            android:textColor="#757575" />
+            android:textColor="@color/black" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
