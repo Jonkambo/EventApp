@@ -5,7 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
+import com.example.eventapp.Data.getUserId
 import com.example.eventapp.databinding.FragmentProfileBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * A simple [Fragment] subclass.
@@ -26,6 +32,23 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
+
+        val db = EventAppDB.getDB(requireContext())
+
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val user = db.userDao().getUserById(getUserId(requireContext()))
+            withContext(Dispatchers.Main) {
+                if (user != null) {
+                    binding?.userTxt?.text = user.login
+                } else {
+                    Toast.makeText(requireContext(), "Пользователь не найден", Toast.LENGTH_SHORT).show()
+                }
+
+                if (user?.userInfo != null) {
+                    binding?.infoTxt?.text = user.userInfo
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {

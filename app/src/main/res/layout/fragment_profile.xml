@@ -23,10 +23,12 @@
         android:orientation="vertical"
         android:gravity="center"
         android:layout_marginTop="30dp">
+
         <ImageView
             android:id="@+id/userImg"
             android:layout_width="100dp"
-            android:layout_height="100dp" />
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/ic_profile" />
 
         <TextView
             android:id="@+id/userTxt"

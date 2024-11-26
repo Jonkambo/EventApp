@@ -1,5 +1,6 @@
 package com.example.eventapp
 
+import android.content.Context
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -25,6 +26,12 @@ interface UserDao {
 
     @Query("SELECT * FROM Users WHERE login = :login LIMIT 1")
     suspend fun getUserByLogin(login: String): User?
+
+    @Query("SELECT * FROM Users WHERE UserID = :userID LIMIT 1")
+    fun getUserById(userID: Int): User?
+
+    @Query("SELECT login FROM Users WHERE UserID = :userID LIMIT 1")
+    fun getLoginById(userID: Int): String?
 
     @Query("SELECT * FROM Users WHERE login = :login AND password = :password LIMIT 1")
     suspend fun checkUserInDatabase(login: String, password: String): User?

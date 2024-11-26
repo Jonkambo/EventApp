@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.eventapp.Data.saveUserId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -57,6 +58,7 @@ class LoginActivity : AppCompatActivity() {
                     if (user != null) {
                         Toast.makeText(this@LoginActivity, "Успешный вход!", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@LoginActivity,BasicPageActivity::class.java);
+                        saveUserId(this@LoginActivity, user.userId)
                         startActivity(intent)
                     } else {
                         Toast.makeText(this@LoginActivity, "Неверные логин или пароль", Toast.LENGTH_SHORT).show()

@@ -44,6 +44,12 @@ data class User(
     @ColumnInfo(name = "Password")
     val password: String,
 
+    @ColumnInfo(name = "UserInfo")
+    val userInfo: String? = null,
+
+//    @ColumnInfo(name = "Areas")
+//    val areas: List<String>? = emptyList(),
+
     @ColumnInfo(name = "RoleID")
     val roleId: Int = 1
 )
