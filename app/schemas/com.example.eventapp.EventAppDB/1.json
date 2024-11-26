@@ -1,0 +1,208 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "34c7ecfb1502cfb7789c89b2f9df5641",
+    "entities": [
+      {
+        "tableName": "Roles",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`RoleID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `RoleName` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "roleId",
+            "columnName": "RoleID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "roleName",
+            "columnName": "RoleName",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "RoleID"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_Roles_RoleName",
+            "unique": true,
+            "columnNames": [
+              "RoleName"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_Roles_RoleName` ON `${TABLE_NAME}` (`RoleName`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Users",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`UserID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `Login` TEXT NOT NULL, `Password` TEXT NOT NULL, `RoleID` INTEGER NOT NULL, FOREIGN KEY(`RoleID`) REFERENCES `Roles`(`RoleID`) ON UPDATE CASCADE ON DELETE RESTRICT )",
+        "fields": [
+          {
+            "fieldPath": "userId",
+            "columnName": "UserID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "login",
+            "columnName": "Login",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "password",
+            "columnName": "Password",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "roleId",
+            "columnName": "RoleID",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "UserID"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_Users_Login",
+            "unique": true,
+            "columnNames": [
+              "Login"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_Users_Login` ON `${TABLE_NAME}` (`Login`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Roles",
+            "onDelete": "RESTRICT",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "RoleID"
+            ],
+            "referencedColumns": [
+              "RoleID"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Comments",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`CommentID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `UserID` INTEGER NOT NULL, `Rating` INTEGER NOT NULL, `CommentText` TEXT NOT NULL, `CommentDate` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "commentId",
+            "columnName": "CommentID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userId",
+            "columnName": "UserID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rating",
+            "columnName": "Rating",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "commentText",
+            "columnName": "CommentText",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "commentDate",
+            "columnName": "CommentDate",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "CommentID"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "EventLocations",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`EventID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `EventTitle` TEXT NOT NULL, `EventDate` TEXT NOT NULL, `Address` TEXT NOT NULL, `EventInfo` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "eventId",
+            "columnName": "EventID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "eventTitle",
+            "columnName": "EventTitle",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "eventDate",
+            "columnName": "EventDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "address",
+            "columnName": "Address",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "eventInfo",
+            "columnName": "EventInfo",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "EventID"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_EventLocations_Address",
+            "unique": false,
+            "columnNames": [
+              "Address"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_EventLocations_Address` ON `${TABLE_NAME}` (`Address`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '34c7ecfb1502cfb7789c89b2f9df5641')"
+    ]
+  }
+}

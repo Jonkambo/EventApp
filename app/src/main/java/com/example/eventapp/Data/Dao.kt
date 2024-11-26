@@ -10,6 +10,9 @@ import kotlinx.coroutines.flow.Flow
 interface RoleDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertRoles(vararg roles: Role)
+
+    @Query("SELECT * FROM Roles")
+    suspend fun getAllRoles(): List<Role>
 }
 
 @Dao

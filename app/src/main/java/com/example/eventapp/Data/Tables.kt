@@ -45,7 +45,7 @@ data class User(
     val password: String,
 
     @ColumnInfo(name = "RoleID")
-    val roleId: Int
+    val roleId: Int = 1
 )
 
 @Entity(tableName = "Comments")

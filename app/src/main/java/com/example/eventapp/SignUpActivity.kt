@@ -62,7 +62,7 @@ class SignUpActivity : AppCompatActivity() {
                     val userDaoo = db.userDao()
                     val existingUser  = userDaoo.getUserByLogin(login.text.toString())
                     if (existingUser  == null) {
-                        val newUser  = User(login = login.text.toString(), password = password.text.toString(), roleId = 1)
+                        val newUser  = User(login = login.text.toString(), password = password.text.toString())
                         userDaoo.insertUser(newUser)
                         withContext(Dispatchers.Main) {
                             Toast.makeText(this@SignUpActivity, "Аккаунт создан", Toast.LENGTH_SHORT).show()
