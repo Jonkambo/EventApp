@@ -22,13 +22,11 @@
             android:text="  Детали события"
             android:textStyle="bold"
             android:textSize="25sp"
+            android:textColor="@color/darkblue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:fontFamily="@font/skolar_pe_variable_regular" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="170dp" />
     </RelativeLayout>
 
     <TextView
@@ -44,17 +42,6 @@
         app:layout_constraintTop_toBottomOf="@+id/detailsHeader"
         android:fontFamily="@font/skolar_pe_variable_regular" />
 
-    <TextView
-        android:id="@+id/areaDetailsTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Информация о площадке"
-        android:textSize="18sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/areasNameTxt"
-        android:fontFamily="@font/skolar_pe_variable_regular"/>
 
     <LinearLayout
         android:id="@+id/areaDate"
@@ -65,7 +52,7 @@
         android:layout_margin="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/areaDetailsTxt">
+        app:layout_constraintTop_toBottomOf="@+id/areasNameTxt">
 
         <ImageView
             android:layout_width="60dp"

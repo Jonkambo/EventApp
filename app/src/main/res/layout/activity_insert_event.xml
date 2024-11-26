@@ -8,75 +8,103 @@
     tools:context=".InsertEventActivity">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/returntoHomeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="EXIT"
+            android:textColor="@color/cardview_shadow_end_color"
+            android:background="@color/cardview_shadow_end_color"
+            android:drawableLeft="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Добавить мероприятие"
+            android:textColor="@color/darkblue"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/groupEdtTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.497">
 
         <EditText
             android:id="@+id/eventTitleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Название мероприятия"
-            android:textSize="20dp"
-            android:inputType="text"
             android:layout_marginBottom="25dp"
-            app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/edit_txt"
-            android:fontFamily="@font/skolar_pe_variable_regular"/>
+            android:fontFamily="@font/skolar_pe_variable_regular"
+            android:hint="Название мероприятия"
+            android:inputType="text"
+            android:textSize="20dp"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/eventDateEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Дата мероприятия"
-            android:textSize="20dp"
-            android:inputType="text"
             android:layout_marginBottom="25dp"
-            app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/edit_txt"
-            android:fontFamily="@font/skolar_pe_variable_regular"/>
+            android:fontFamily="@font/skolar_pe_variable_regular"
+            android:hint="Дата мероприятия"
+            android:inputType="text"
+            android:textSize="20dp"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/addressEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Адрес"
-            android:textSize="20dp"
-            android:inputType="text"
             android:layout_marginBottom="25dp"
-            app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/edit_txt"
-            android:fontFamily="@font/skolar_pe_variable_regular"/>
+            android:fontFamily="@font/skolar_pe_variable_regular"
+            android:hint="Адрес"
+            android:inputType="text"
+            android:textSize="20dp"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/eventInfoEditText"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:hint="Дополнительная информация"
-            android:textSize="20dp"
-            android:inputType="text"
             android:layout_marginBottom="25dp"
-            app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/edit_txt"
-            android:fontFamily="@font/skolar_pe_variable_regular"/>
+            android:fontFamily="@font/skolar_pe_variable_regular"
+            android:hint="Дополнительная информация"
+            android:inputType="text"
+            android:textSize="20dp"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Сохранить"
             android:layout_gravity="center"
-            android:paddingHorizontal="30dp"
-            android:textSize="22dp"
+            android:background="@drawable/blue_button"
             android:fontFamily="@font/skolar_pe_variable_regular"
+            android:paddingHorizontal="30dp"
+            android:text="Сохранить"
             android:textColor="@color/white"
-            android:background="@drawable/blue_button" />
+            android:textSize="22dp" />
 
     </LinearLayout>
 

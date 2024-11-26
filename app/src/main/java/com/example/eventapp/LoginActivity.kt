@@ -1,10 +1,14 @@
 package com.example.eventapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -15,14 +19,24 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var usernameEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
+    private lateinit var toSignUoBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar()?.hide();
         setContentView(R.layout.activity_login)
 
         usernameEditText = findViewById(R.id.usernameTxt) // ID поля логина
         passwordEditText = findViewById(R.id.passwordTxt) // ID поля пароля
         loginButton = findViewById(R.id.loginBtn)         // ID кнопки входа
+        toSignUoBtn = findViewById(R.id.returnSignInBtn)
+
+        toSignUoBtn?.setOnClickListener{
+            val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
+            startActivity(intent)
+        }
 
         loginButton.setOnClickListener {
             val username = usernameEditText.text.toString().trim()
@@ -40,8 +54,11 @@ class LoginActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     if (user != null) {
                         Toast.makeText(this@LoginActivity, "Успешный вход!", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@LoginActivity,BasicPageActivity::class.java);
+                        startActivity(intent)
                     } else {
                         Toast.makeText(this@LoginActivity, "Неверные логин или пароль", Toast.LENGTH_SHORT).show()
+                        return@withContext
                     }
                 }
             }
@@ -50,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
 
     // Функция для проверки пользователя в базе данных
     private suspend fun checkUserInDatabase(username: String, password: String): User? {
-        val database = AppDatabase.getInstance(this)
+        val database = EventAppDB.getDB(this)
         val userDao = database.userDao()
 
         // Получаем пользователя с указанным логином

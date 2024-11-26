@@ -56,19 +56,20 @@ class HomeFragment : Fragment() {
             startActivity(intent);
         }
 
+        // скрываем кнопку или показываем в зависимости от роли
         if (isAdmin) {
-            addEventBtn.visibility = View.VISIBLE // Показываем кнопку
+            addEventBtn.visibility = View.VISIBLE
         } else {
-            addEventBtn.visibility = View.GONE // Скрываем кнопку
+            addEventBtn.visibility = View.GONE
         }
 
         listView = view.findViewById(R.id.eventsView)
         eventAdapter = EventAdapter(requireContext(), eventList)
-        //listView.adapter = eventAdapter
 
         loadEvents()
     }
 
+    // достаем из БД мероприятия и запихиваем в адаптер
     private fun loadEvents() {
         db = EventAppDB.getDB(requireContext())
         val eventLocationDao = db.eventLocationDao()
@@ -100,6 +101,7 @@ class HomeFragment : Fragment() {
         startActivity(intent)
     }
 
+    // здесь можно передавать параметры между фрагментами
     companion object {
 
         private const val ARG_PARAM1 = "param1"
