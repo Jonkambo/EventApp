@@ -50,7 +50,9 @@ class LoginActivity : AppCompatActivity() {
 
             // Если не пустые, проверяем данные в базе данных
             lifecycleScope.launch(Dispatchers.IO) {
-                val user = checkUserInDatabase(username, password)
+                val db = EventAppDB.getDB(this@LoginActivity)
+                val userDaoo = db.userDao()
+                val user = userDaoo.checkUserInDatabase(username, password)
                 withContext(Dispatchers.Main) {
                     if (user != null) {
                         Toast.makeText(this@LoginActivity, "Успешный вход!", Toast.LENGTH_SHORT).show()
