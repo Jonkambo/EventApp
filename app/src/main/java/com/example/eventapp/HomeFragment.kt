@@ -4,12 +4,14 @@ package com.example.eventapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ListView
+import android.widget.Toast
 import com.example.eventapp.databinding.FragmentHomeBinding
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
@@ -73,13 +75,19 @@ class HomeFragment : Fragment() {
 
         // асинхронный запрос данных
         lifecycleScope.launch {
-            eventLocationDao.getAllEventLocations().collect { events ->
-                eventList.clear() // Очищаем старые данные
-                eventList.addAll(events) // Добавляем новые данные
-                eventAdapter.notifyDataSetChanged() // Обновляем адаптер
+            try {
+                eventLocationDao.getAllEventLocations().collect { events ->
+                    eventList.clear() // Очищаем старые данные
+                    eventList.addAll(events) // Добавляем новые данные
+                    eventAdapter.notifyDataSetChanged() // Обновляем адаптер
+                }
+            } catch (e: Exception) {
+                // Handle exceptions appropriately, e.g., log the error, show a user-friendly message
+                Log.e("HomeFragment", "Error loading events: ${e.message}")
+                Toast.makeText(requireContext(), "Error loading events", Toast.LENGTH_SHORT).show()
             }
-            listView.adapter = eventAdapter
         }
+        listView.adapter = eventAdapter
     }
 
     override fun onDestroyView() {
