@@ -1,40 +1,63 @@
 package com.example.eventapp
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import android.widget.Button
-import androidx.activity.enableEdgeToEdge
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginActivity : AppCompatActivity() {
-    var signinButton: Button? = null;
-    var signupButton: Button? = null;
+
+    private lateinit var usernameEditText: EditText
+    private lateinit var passwordEditText: EditText
+    private lateinit var loginButton: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         setContentView(R.layout.activity_login)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-        signinButton = findViewById(R.id.loginBtn)
 
-        signinButton?.setOnClickListener {
-            val intent = Intent(this@LoginActivity,BasicPageActivity::class.java);
-            startActivity(intent);
-        }
-        signupButton = findViewById(R.id.returnSignInBtn)
+        usernameEditText = findViewById(R.id.usernameTxt) // ID поля логина
+        passwordEditText = findViewById(R.id.passwordTxt) // ID поля пароля
+        loginButton = findViewById(R.id.loginBtn)         // ID кнопки входа
 
-        signupButton?.setOnClickListener {
-            val intent = Intent(this@LoginActivity,SignUpActivity::class.java);
-            startActivity(intent);
+        loginButton.setOnClickListener {
+            val username = usernameEditText.text.toString().trim()
+            val password = passwordEditText.text.toString().trim()
+
+            // Проверяем, что поля не пустые
+            if (username.isBlank() || password.isBlank()) {
+                Toast.makeText(this, "Пожалуйста, заполните все поля", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Если не пустые, проверяем данные в базе данных
+            lifecycleScope.launch(Dispatchers.IO) {
+                val user = checkUserInDatabase(username, password)
+                withContext(Dispatchers.Main) {
+                    if (user != null) {
+                        Toast.makeText(this@LoginActivity, "Успешный вход!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@LoginActivity, "Неверные логин или пароль", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
     }
+
+    // Функция для проверки пользователя в базе данных
+    private suspend fun checkUserInDatabase(username: String, password: String): User? {
+        val database = AppDatabase.getInstance(this)
+        val userDao = database.userDao()
+
+        // Получаем пользователя с указанным логином
+        val user = userDao.getUserByLogin(username)
+
+        // Проверяем, что пароль совпадает
+        return if (user != null && user.password == password) user else null
+    }
 }
+
