@@ -1,14 +1,28 @@
 package com.example.eventapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.view.WindowManager
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AreaDetailsActivity : AppCompatActivity() {
+    private lateinit var db: EventAppDB
+    private lateinit var eventName: String
+    private lateinit var areaTitle: TextView
+    private lateinit var areaDate: TextView
+    private lateinit var areaPlace: TextView
+    private lateinit var areaInfo: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,6 +34,42 @@ class AreaDetailsActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        eventName = intent.getStringExtra("event_title") ?: ""
+        areaTitle = findViewById(R.id.areasNameTxt)
+        areaDate = findViewById(R.id.areaDate)
+        areaPlace = findViewById(R.id.areaPlace)
+        areaInfo = findViewById(R.id.areaInfoTxt)
+
+        loadAreaDetails(eventName)
+    }
+
+    private fun loadAreaDetails(areaName: String) {
+        db = EventAppDB.getDB(this)
+        val eventsDao = db.eventLocationDao()
+
+        // Асинхронный запрос данных
+        lifecycleScope.launch {
+            try {
+                val existingEvent = eventsDao.getAreaByName(areaName)
+                if (existingEvent == null) {
+                    // Обновляем UI с полученными данными
+                    areaTitle.text = existingEvent?.eventTitle // Название площадки
+                    areaDate.text = existingEvent?.eventDate // Дата события
+                    areaPlace.text = existingEvent?.address // Место проведения
+                    areaInfo.text = existingEvent?.eventInfo
+                } else {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@AreaDetailsActivity, "Не нашли событие", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("AreaDetailsActivity", "Не нашли событие: ${e.message}")
+                Toast.makeText(this@AreaDetailsActivity, "Не нашли событие", Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
     }
 }
