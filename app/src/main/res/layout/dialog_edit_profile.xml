@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <ImageView
+        android:id="@+id/editUserImg"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_profile"
+        android:contentDescription="User Image" />
+
+    <Button
+        android:id="@+id/btnChangePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:padding="15dp"
+        android:textColor="@color/white"
+        android:background="@drawable/blue_button"
+        android:fontFamily="@font/skolar_pe_variable_regular"
+        android:textSize="15sp"
+        android:text="Изменить фото" />
+
+    <EditText
+        android:id="@+id/editAboutMe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Обо мне"
+        android:inputType="textMultiLine"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/btnSaveChanges"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:background="@drawable/blue_button"
+        android:textSize="15sp"
+        android:text="Сохранить" />
+</LinearLayout>

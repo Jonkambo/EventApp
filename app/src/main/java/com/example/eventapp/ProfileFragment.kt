@@ -1,11 +1,17 @@
 package com.example.eventapp
 
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import com.example.eventapp.Data.getUserId
 import com.example.eventapp.databinding.FragmentProfileBinding
@@ -13,14 +19,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileFragment : Fragment() {
 
     private var binding: FragmentProfileBinding? = null
+    private var selectedImageUri: Uri? = null
+    private var tempImageUri: Uri? = null
+    private var userImageViewForDialog: ImageView? = null
+
+    private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        uri?.let {
+            tempImageUri = it
+            userImageViewForDialog?.setImageURI(tempImageUri)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,22 +44,9 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
 
-        val db = EventAppDB.getDB(requireContext())
+        binding?.toEditingProfile?.setOnClickListener { showEditProfileDialog() }
 
-        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-            val user = db.userDao().getUserById(getUserId(requireContext()))
-            withContext(Dispatchers.Main) {
-                if (user != null) {
-                    binding?.userTxt?.text = user.login
-                } else {
-                    Toast.makeText(requireContext(), "Пользователь не найден", Toast.LENGTH_SHORT).show()
-                }
-
-                if (user?.userInfo != null) {
-                    binding?.infoTxt?.text = user.userInfo
-                }
-            }
-        }
+        loadUserProfile()
     }
 
     override fun onDestroyView() {
@@ -67,5 +65,91 @@ class ProfileFragment : Fragment() {
                     putString(ARG_DATA, param1)
                 }
             }
+    }
+
+    private fun loadUserProfile() {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val user = EventAppDB.getDB(requireContext()).userDao().getUserById(getUserId(requireContext()))
+            withContext(Dispatchers.Main) {
+                user?.let {
+                    binding?.userTxt?.text = it.login
+                    binding?.infoTxt?.text = it.userInfo ?: "Пользователь еще не добавил информацию о себе"
+                    it.profilePhoto?.let { photo ->
+                        val bitmap = BitmapFactory.decodeByteArray(photo, 0, photo.size)
+                        binding?.userImg?.setImageBitmap(bitmap)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun convertUriToByteArray(uri: Uri): ByteArray? {
+        return try {
+            requireContext().contentResolver.openInputStream(uri)?.use { inputStream ->
+                inputStream.readBytes()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    private fun showEditProfileDialog() {
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_profile, null)
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        val editAboutMe = dialogView.findViewById<EditText>(R.id.editAboutMe)
+        val btnSave = dialogView.findViewById<Button>(R.id.btnSaveChanges)
+        val btnChangePhoto = dialogView.findViewById<Button>(R.id.btnChangePhoto)
+        val userImageView = dialogView.findViewById<ImageView>(R.id.editUserImg)
+
+        userImageViewForDialog = userImageView
+
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val user = EventAppDB.getDB(requireContext()).userDao().getUserById(getUserId(requireContext()))
+            withContext(Dispatchers.Main) {
+                user?.let {
+                    editAboutMe.setText(it.userInfo ?: "")
+                    it.profilePhoto?.let { photo ->
+                        val bitmap = BitmapFactory.decodeByteArray(photo, 0, photo.size)
+                        userImageView.setImageBitmap(bitmap)
+                    }
+                }
+            }
+        }
+
+        btnChangePhoto.setOnClickListener {
+            pickImageLauncher.launch("image/*")
+        }
+
+        btnSave.setOnClickListener {
+            val newInfo = editAboutMe.text.toString()
+            val photoBytes = tempImageUri?.let { uri -> convertUriToByteArray(uri) }
+
+            viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                EventAppDB.getDB(requireContext()).userDao().updateUserProfile(
+                    userId = getUserId(requireContext()),
+                    userInfo = newInfo,
+                    profilePhoto = photoBytes
+                )
+                withContext(Dispatchers.Main) {
+                    binding?.infoTxt?.text = newInfo
+                    tempImageUri?.let {
+                        selectedImageUri = it
+                        binding?.userImg?.setImageURI(selectedImageUri)
+                    }
+                    dialog.dismiss()
+                    Toast.makeText(requireContext(), "Профиль обновлен", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        dialog.setOnDismissListener {
+            userImageViewForDialog = null
+        }
+
+        dialog.show()
     }
 }

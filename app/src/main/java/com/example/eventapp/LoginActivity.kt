@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.eventapp.Data.saveUserId
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -67,18 +66,6 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    // Функция для проверки пользователя в базе данных
-    private suspend fun checkUserInDatabase(username: String, password: String): User? {
-        val database = EventAppDB.getDB(this)
-        val userDao = database.userDao()
-
-        // Получаем пользователя с указанным логином
-        val user = userDao.getUserByLogin(username)
-
-        // Проверяем, что пароль совпадает
-        return if (user != null && user.password == password) user else null
     }
 }
 

@@ -47,6 +47,9 @@ data class User(
     @ColumnInfo(name = "UserInfo")
     val userInfo: String? = null,
 
+    @ColumnInfo(name = "ProfilePhoto")
+    val profilePhoto: ByteArray? = null,
+
 //    @ColumnInfo(name = "Areas")
 //    val areas: List<String>? = emptyList(),
 
