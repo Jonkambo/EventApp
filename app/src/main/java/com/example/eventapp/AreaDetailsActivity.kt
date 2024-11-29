@@ -1,5 +1,6 @@
 package com.example.eventapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
@@ -22,6 +23,7 @@ class AreaDetailsActivity : AppCompatActivity() {
     private lateinit var areaDate: TextView
     private lateinit var areaPlace: TextView
     private lateinit var areaInfo: TextView
+    private lateinit var detailsHeaderText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +44,12 @@ class AreaDetailsActivity : AppCompatActivity() {
         areaPlace = findViewById(R.id.areaPlace)
         areaInfo = findViewById(R.id.areaInfoTxt)
 
+        detailsHeaderText = findViewById(R.id.detailsHeaderText)
+        detailsHeaderText.setOnClickListener {
+            val intent = Intent(this, BasicPageActivity::class.java)
+            startActivity(intent)
+        }
+
         loadAreaDetails(eventName)
     }
 
@@ -53,11 +61,10 @@ class AreaDetailsActivity : AppCompatActivity() {
         lifecycleScope.launch {
             try {
                 val existingEvent = eventsDao.getAreaByName(areaName)
-                if (existingEvent == null) {
-                    // Обновляем UI с полученными данными
-                    areaTitle.text = existingEvent?.eventTitle // Название площадки
-                    areaDate.text = existingEvent?.eventDate // Дата события
-                    areaPlace.text = existingEvent?.address // Место проведения
+                if (existingEvent != null) {
+                    areaTitle.text = existingEvent?.eventTitle
+                    areaDate.text = existingEvent?.eventDate
+                    areaPlace.text = existingEvent?.address
                     areaInfo.text = existingEvent?.eventInfo
                 } else {
                     withContext(Dispatchers.Main) {
