@@ -59,4 +59,7 @@ interface EventLocationDao {
 
     @Query("SELECT * FROM EventLocations")
     fun getAllEventLocations(): Flow<List<EventLocation>>
+
+    @Query("SELECT * FROM EventLocations WHERE eventTitle = :areaName LIMIT 1")
+    suspend fun getAreaByName(areaName: String): EventLocation?
 }

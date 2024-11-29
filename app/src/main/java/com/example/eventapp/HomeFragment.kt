@@ -64,7 +64,14 @@ class HomeFragment : Fragment() {
         }
 
         listView = view.findViewById(R.id.eventsView)
-        eventAdapter = EventAdapter(requireContext(), eventList)
+        eventAdapter = EventAdapter(requireContext(), eventList, object : EventAdapter.OnItemClickListener {
+            override fun onItemClick(eventLocation: EventLocation) {
+                val intent = Intent(requireContext(), AreaDetailsActivity::class.java).apply {
+                    putExtra("event_title", eventLocation.eventTitle)
+                }
+                startActivity(intent)
+            }
+        })
 
         loadEvents()
     }
