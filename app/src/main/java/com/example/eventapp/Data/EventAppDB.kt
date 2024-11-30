@@ -34,12 +34,17 @@ abstract class EventAppDB : RoomDatabase() {
                         CoroutineScope(Dispatchers.IO).launch {
                             INSTANCE?.let { database ->
                                 val existingRoles = database.roleDao().getAllRoles()
+                                val existAdmin = database.userDao().getUserByLogin("admin")
                                 if (existingRoles.isEmpty()) {
                                     val roles = listOf(
                                         Role(roleId = 1, roleName = "user"),
                                         Role(roleId = 2, roleName = "admin")
                                     )
                                     database.roleDao().insertRoles(*roles.toTypedArray())
+                                }
+                                
+                                if (existAdmin == null) {
+                                    database.userDao().insertUser(User(login = "admin", password = "123", roleId = 2))
                                 }
                             }
                         }

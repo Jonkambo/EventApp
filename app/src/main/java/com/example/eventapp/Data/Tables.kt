@@ -50,8 +50,8 @@ data class User(
     @ColumnInfo(name = "ProfilePhoto")
     val profilePhoto: ByteArray? = null,
 
-//    @ColumnInfo(name = "Areas")
-//    val areas: List<String>? = emptyList(),
+    @ColumnInfo(name = "Areas")
+    val areas: String? = "[]",
 
     @ColumnInfo(name = "RoleID")
     val roleId: Int = 1

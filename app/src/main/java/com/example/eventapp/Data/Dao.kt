@@ -41,6 +41,9 @@ interface UserDao {
 
     @Query("UPDATE Users SET UserInfo = :userInfo, ProfilePhoto = :profilePhoto WHERE UserID = :userId")
     suspend fun updateUserProfile(userId: Int, userInfo: String, profilePhoto: ByteArray?)
+
+    @Query("UPDATE Users SET Areas = :areas WHERE UserID = :userId")
+    suspend fun updateUserAreas(userId: Int, areas: String)
 }
 
 @Dao
