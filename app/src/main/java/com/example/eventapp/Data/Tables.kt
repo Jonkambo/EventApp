@@ -44,8 +44,17 @@ data class User(
     @ColumnInfo(name = "Password")
     val password: String,
 
+    @ColumnInfo(name = "UserInfo")
+    val userInfo: String? = null,
+
+    @ColumnInfo(name = "ProfilePhoto")
+    val profilePhoto: ByteArray? = null,
+
+    @ColumnInfo(name = "Areas")
+    val areas: String? = "[]",
+
     @ColumnInfo(name = "RoleID")
-    val roleId: Int
+    val roleId: Int = 1
 )
 
 @Entity(tableName = "Comments")

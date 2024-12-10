@@ -9,17 +9,19 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.runBlocking
+import java.util.concurrent.Executors
 
 
 class MainActivity : AppCompatActivity() {
-    var signinButton: Button? = null;
-    var signupButton: Button? = null;
+    var signinButton: Button? = null
+    var signupButton: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar()?.hide();
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        getSupportActionBar()?.hide()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -29,15 +31,14 @@ class MainActivity : AppCompatActivity() {
         signinButton = findViewById(R.id.signInBtn)
 
         signinButton?.setOnClickListener {
-            val intent = Intent(this@MainActivity,LoginActivity::class.java);
-            startActivity(intent);
+            val intent = Intent(this@MainActivity,LoginActivity::class.java)
+            startActivity(intent)
         }
         signupButton = findViewById(R.id.signUpBtn)
 
         signupButton?.setOnClickListener {
-            val intent = Intent(this@MainActivity,SignUpActivity::class.java);
-            startActivity(intent);
+            val intent = Intent(this@MainActivity,SignUpActivity::class.java)
+            startActivity(intent)
         }
-
     }
 }
