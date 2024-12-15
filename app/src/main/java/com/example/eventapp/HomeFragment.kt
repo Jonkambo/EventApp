@@ -35,6 +35,7 @@ class HomeFragment : Fragment() {
     private lateinit var eventAdapter: EventAdapter
     private lateinit var usersAdapter: UsersAdapter
     private val eventList: MutableList<EventLocation> = mutableListOf()
+    private val userList: MutableList<User> = mutableListOf()
     private lateinit var addEventBtn: Button
 
     override fun onCreateView(
@@ -78,7 +79,33 @@ class HomeFragment : Fragment() {
 
 
         listViewUsers = view.findViewById(R.id.usersView)
-      //  usersAdapter =
+        usersAdapter = UsersAdapter(requireContext(), userList, object : UsersAdapter.OnItemClickListener {
+            override fun onItemClick(user: User) {
+                // Обработка клика по пользователю
+                Toast.makeText(requireContext(), "Clicked: ${user.login}", Toast.LENGTH_SHORT).show()
+            }
+        })
+        loadUsers() // Загрузка пользователей
+    }
+
+    // Загрузка пользователей из БД
+    private fun loadUsers() {
+        db = EventAppDB.getDB(requireContext())
+        val userDao = db.userDao()
+
+        lifecycleScope.launch {
+            try {
+                userDao.getAllUsers().collect { users ->
+                    userList.clear()
+                    userList.addAll(users)
+                    usersAdapter.notifyDataSetChanged()
+                }
+            } catch (e: Exception) {
+                Log.e("HomeFragment", "Error loading users: ${e.message}")
+                Toast.makeText(requireContext(), "Error loading users", Toast.LENGTH_SHORT).show()
+            }
+        }
+        listViewUsers.adapter = usersAdapter
     }
 
     // достаем из БД мероприятия и запихиваем в адаптер
@@ -130,10 +157,6 @@ class HomeFragment : Fragment() {
                     putString(ARG_PARAM1, param1)
                 }
             }
-    }
-
-    private fun usersLoad(){
-
     }
 
 }
