@@ -30,8 +30,10 @@ class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
     private lateinit var listView: ListView
+    private lateinit var listViewUsers: ListView
     private lateinit var db: EventAppDB
     private lateinit var eventAdapter: EventAdapter
+    private lateinit var usersAdapter: UsersAdapter
     private val eventList: MutableList<EventLocation> = mutableListOf()
     private lateinit var addEventBtn: Button
 
@@ -52,9 +54,9 @@ class HomeFragment : Fragment() {
 
         addEventBtn = view.findViewById(R.id.addEventBtn)
 
-        addEventBtn?.setOnClickListener {
-            val intent = Intent(requireContext(),InsertEventActivity::class.java);
-            startActivity(intent);
+        addEventBtn.setOnClickListener {
+            val intent = Intent(requireContext(),InsertEventActivity::class.java)
+            startActivity(intent)
         }
 
         // скрываем кнопку или показываем в зависимости от роли
@@ -71,8 +73,12 @@ class HomeFragment : Fragment() {
                 startActivity(intent)
             }
         })
-
         loadEvents()
+
+
+
+        listViewUsers = view.findViewById(R.id.usersView)
+      //  usersAdapter =
     }
 
     // достаем из БД мероприятия и запихиваем в адаптер
@@ -125,4 +131,9 @@ class HomeFragment : Fragment() {
                 }
             }
     }
+
+    private fun usersLoad(){
+
+    }
+
 }
