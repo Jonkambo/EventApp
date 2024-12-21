@@ -71,7 +71,7 @@
         android:fontFamily="@font/skolar_pe_variable_regular"/>
 
     <Button
-        android:id="@+id/addReviewBtn"
+        android:id="@+id/reviewsbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Оставить отзыв"

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.EventApp"
         tools:targetApi="31">
         <activity
+            android:name=".AddReviewActivity"
+            android:exported="false"/>
+        <activity
             android:name=".InsertEventActivity"
             android:exported="false" />
         <activity

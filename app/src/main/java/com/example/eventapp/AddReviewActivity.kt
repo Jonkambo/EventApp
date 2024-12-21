@@ -28,9 +28,6 @@ class AddReviewActivity : AppCompatActivity() {
         reviewEditText = findViewById(R.id.reviewEditText)
         submitReviewButton = findViewById(R.id.submitReviewButton)
 
-        // Установка текста верхней надписи
-        findViewById<TextView>(R.id.headerTextView).text = "Ваш отзыв помогает нам становиться лучше"
-
         submitReviewButton.setOnClickListener {
             val reviewText = reviewEditText.text.toString()
             if (reviewText.isNotEmpty()) {

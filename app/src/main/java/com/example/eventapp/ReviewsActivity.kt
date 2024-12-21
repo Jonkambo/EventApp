@@ -21,7 +21,9 @@ class ReviewsActivity : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(R.layout.activity_reviews)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        addReviewButton = findViewById(R.id.add_review_button)
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.reviews)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
