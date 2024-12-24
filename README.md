@@ -40,7 +40,7 @@ ITPARK — это мобильное приложение, разработан�
 
 1. Клонируйте репозиторий:
    ```bash
-   git clone https://github.com/ваш_пользователь/ITPARK.git
+   git clone https://github.com/Jonkambo/EventApp.git
    ```
 2. Откройте проект в Android Studio.
 3. Синхронизируйте проект с Gradle.
