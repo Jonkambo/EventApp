@@ -26,9 +26,22 @@ class AddReviewActivity : AppCompatActivity() {
 
         // Инициализация элементов интерфейса
         reviewEditText = findViewById(R.id.reviewEditText)
+        ratingBar = findViewById(R.id.ratingBar)
         submitReviewButton = findViewById(R.id.submitReviewButton)
 
         submitReviewButton.setOnClickListener {
+            val reviewText = reviewEditText.text.toString()
+            val rating = ratingBar.rating.toInt()
+
+            val newReview = Review(reviewText, rating)
+
+            CoroutineScope(Dispatchers.IO).launch {
+                appDatabase.reviewDao().insert(newReview)
+                finish() // Закрываем активити после сохранения
+            }
+
+
+            submitReviewButton.setOnClickListener {
             val reviewText = reviewEditText.text.toString()
             if (reviewText.isNotEmpty()) {
                 saveReview(reviewText)

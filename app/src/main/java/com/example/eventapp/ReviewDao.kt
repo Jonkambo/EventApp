@@ -7,8 +7,11 @@ import androidx.room.Query
 @Dao
 interface ReviewDao {
     @Insert
-    fun insert(review: Review)
+    suspend fun insert(review: Review)
 
     @Query("SELECT * FROM reviews")
-    fun getAllReviews(): List<Review>
+    suspend fun getAllReviews(): List<Review>
+
+    @Query("SELECT AVG(rating) FROM reviews")
+    suspend fun getAverageRating(): Float?
 }

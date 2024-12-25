@@ -61,14 +61,12 @@
         android:fontFamily="@font/skolar_pe_variable_regular"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/averageRatingTextView"
+        android:layout_width="293dp"
         android:layout_height="wrap_content"
-        android:text="Тут будет в целом рейтинг всех отзывов"
-        android:textSize="18sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="20dp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/skolar_pe_variable_regular"/>
+        android:padding="16dp"
+        android:text="Средний рейтинг: 0"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/reviewsbtn"
